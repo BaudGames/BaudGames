@@ -34,9 +34,11 @@ class Player {
     }
     
     function calcTotal(){
+        $ace = 0;
         // check for ace
         foreach ($this->hand as &$card){
-         if ($card->numValue == 11) { $ace = $card ;}
+         if ($card->numValue == 11) { $ace++ ;}
+         
         }
         
         $total = 0;
@@ -47,7 +49,7 @@ class Player {
         $this->total = $total;
         
         //check total with ace as 1
-        if (!$ace = null) { 
+        if ($ace > 0) { 
             $totalAce = $total - 10 ;
             if ($totalAce == 21) { $this->total = $totalAce;}
             if ($total > 21 && $totalAce <=21) { $this->total = $totalAce;}
