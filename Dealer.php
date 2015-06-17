@@ -28,7 +28,7 @@ class Dealer extends Player{
         
         $p=1;
         while($p<=$numPlayers){
-            $player = new Player($this,$p);
+            $player = new Player($p);
             array_push($this->players, $player);
             $p++;
         }
@@ -47,7 +47,7 @@ class Dealer extends Player{
     function printDealerHand(){
         echo "<br> D:: ";
         foreach($this->hand as &$card){
-            $card->printDetails();
+           echo $card->getDetails();
              echo ', ';
         }
         //echo "<br>" . '-------- ' . "<br>" ;
@@ -55,12 +55,10 @@ class Dealer extends Player{
     
     function dealCards(){
         foreach ($this->players as &$player){
-            array_push($player->hand, array_pop($this->deckOfCards->cards));
-            array_push($player->hand, array_pop($this->deckOfCards->cards));
+            $this->deckOfCards->dealCards($player, 2);
             $player->calcTotal();
         }
-        array_push($this->hand, array_pop($this->deckOfCards->cards));
-        array_push($this->hand, array_pop($this->deckOfCards->cards));
+       $this->deckOfCards->dealCards($this, 2);
         
     }
     
@@ -70,10 +68,10 @@ class Dealer extends Player{
             $playing = true;
              echo "<br> >  Round " . $count;
             while ($playing == true){
-            
+
                 $playerAction = $player->action();
                 if ($playerAction == "hit") {
-                    array_push($player->hand, array_pop($this->deckOfCards->cards));
+                    $this->deckOfCards->dealCards($player, 1);
                     $player->calcTotal();
                     $lastCard = end(array_values($player->hand))->getDetails();
                     echo "<br> Player " . $player->name . " Hit - " . $lastCard ;
@@ -83,20 +81,17 @@ class Dealer extends Player{
                     echo "<br> Player " . $player->name . " stuck";
                 }
                 elseif ($playerAction == "doubleDown"){
-                    array_push($player->hand, array_pop($this->deckOfCards->cards));
+                    $this->deckOfCards->dealCards($player, 1);
                     $player->calcTotal();
                     $lastCard = end(array_values($player->hand))->getDetails();
                     echo "<br> Player " . $player->name . " Doubled Down - " . $lastCard ;
                     $playing = false;
                     
                 }
-
-                
                 if ( $player->total > $this->TARGETSCORE) {
                     $playing = false;
                     echo "<br> Player" . $player->name . " BUST";
                 }
-            
             }
            
             $player->printDetails();

@@ -1,35 +1,66 @@
 <?php
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 
 /**
- * Description of Card
+ * Card used in Deck class
  *
- * @author Chris
+ * @author Chris Dromey <chrisdromey@gmail.com>
+ * 
+ * @param string $suite The suite of the card
+ * @param string $faceValue The value displayed on the card
+ * @param int $numericValue The the numeric value of the card 
+ * @param bool $faceUp (default FALSE) Whether or not the card is displayed face up on the play board
+ * @param bool $aceLow (default NULL) Wheter the ace is counted as 1 or 11. Default is NULL if card is not an ace and FALSE if card is an ace.
+ * 
  */
 class Card {
-    public $suite;
-    public $faceValue;
-    public $numValue;
-    public $faceUp;
+    private $suite;
+    private $faceValue;
+    private $numericValue;
+    private $faceUp;
+    private $aceLow;
     
-    function __construct($s , $fv, $nv, $fu = false) {
-        $this->suite = $s;
-        $this->faceValue = $fv;
-        $this->numValue =$nv;
-        $this->faceUp = $fu;
+    function __construct($suite , $faceValue, $numericValue, $faceUp = false, $aceLow = null) {
+        $this->suite = $suite;
+        $this->faceValue = $faceValue;
+        $this->numericValue = $numericValue;
+        $this->faceUp = $faceUp;
+        $this->aceLow = null; //null if card is not an ace
        
+        //If the card is an ace set the $aceLow variable to false to signify that the ace is counted as high(11)
+        if ($this->numericValue == 11) {$this->aceLow=false;}
    }
    
-   function printDetails(){
-       echo  $this->faceValue . $this->suite  ;
-   }
+   //
+   //  ACCESSORS
+   //
    
+   function getSuite(){
+       return $this->suite;
+   }
+   function getFaceValue(){
+       return $this->faceValue;
+   }
+   function getNumericValue(){
+       return $this->numericValue;
+   }
+   function getFaceUp(){
+       return$this->faceUp;
+   }
+   function getAceLow(){
+       return $this->aceLow;
+   }
+   /**Get the details used to commenly display the card
+    * eg 10H or AD
+    * 
+    * @return String
+    */
    function getDetails(){
         return  $this->faceValue . $this->suite;
    }
+   
+   
 }
