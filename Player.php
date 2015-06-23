@@ -53,9 +53,9 @@ class Player {
         if (!is_null($ace)) {
             switch ($ace) {
                 case true:
-                   // if ($this->total + 10 < 22){
+                    if ($this->total + 10 < 22){
                         echo ' or ' . ($this->total + 10);
-                   // }
+                    }
                     break;
 
                 case false:
@@ -63,7 +63,6 @@ class Player {
                         echo ' or ' . ($this->total - 10);
                     }
                     break;
-                    
             }
         }
     }
@@ -73,7 +72,6 @@ class Player {
         // check for aces
         foreach ($this->hand as &$card){
          if ( $card->getAceLow() !== NULL) { $ace++;}
-         
         }
         
         // total as stands at the moment

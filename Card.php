@@ -76,8 +76,8 @@ class Card {
     * @param bool $lowBool (default null) the value to set the $aceLow field to
     */
    function setAceValue($lowBool = null){
-       if ($this->aceLow !== null){ //if it is null the card is not an ace as aces are constructed with the field to FALSE
-           if ($lowBool == null){ // If no parameter is passed the toggle the value
+       if (!is_null($this->aceLow) ){ //if it is null the card is not an ace as aces are constructed with the field to FALSE
+           if (is_null($lowBool)){ // If no parameter is passed the toggle the value
                $this->aceLow = !$this->aceLow;
            }
            else { $this->aceLow = $lowBool;} //Use the passed value
