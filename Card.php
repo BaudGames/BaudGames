@@ -13,7 +13,7 @@
  * @param string $faceValue The value displayed on the card
  * @param int $numericValue The the numeric value of the card 
  * @param bool $faceUp (default FALSE) Whether or not the card is displayed face up on the play board
- * @param bool $aceLow (default NULL) Wheter the ace is counted as 1 or 11. Default is NULL if card is not an ace and FALSE if card is an ace.
+ * @param bool $aceLow (default NULL) Wheter the ace is counted as 1 or 11. Default is NULL if card is not an ace and TRUE if card is an ace.
  * 
  */
 class Card {
@@ -30,8 +30,9 @@ class Card {
         $this->faceUp = $faceUp;
         $this->aceLow = null; //null if card is not an ace
        
-        //If the card is an ace set the $aceLow variable to false to signify that the ace is counted as high(11)
-        if ($this->numericValue == 11) {$this->aceLow=false;}
+        //If the card is an ace set the $aceLow variable to true.
+        //This is because only the first ace in any hand could be couted as 11.
+        if ($this->numericValue == 1) {$this->aceLow=true;}
    }
    
    //
@@ -62,5 +63,28 @@ class Card {
         return  $this->faceValue . $this->suite;
    }
    
+   ////////////////
+   //  MUTATORS  //
+   ////////////////
    
-}
+   /** Allows you to change the value of an ace from high to low.
+    * 
+    * Does nothing if the $aceLow field is set to null (i.e ths card is not an ace).
+    * If a perameter is passed the value of the boolean field $aceLow willl be set to that.
+    * Otherwise the field will be toggled.
+    * 
+    * @param bool $lowBool (default null) the value to set the $aceLow field to
+    */
+   function setAceValue($lowBool = null){
+       if ($this->aceLow !== null){ //if it is null the card is not an ace as aces are constructed with the field to FALSE
+           if ($lowBool == null){ // If no parameter is passed the toggle the value
+               $this->aceLow = !$this->aceLow;
+           }
+           else { $this->aceLow = $lowBool;} //Use the passed value
+            }
+            //set the numerc value of ace
+           if ($this->aceLow == true) { $this->numericValue = 1;}
+           else { $this->numericValue = 11;}
+       }
+   }
+

@@ -56,7 +56,7 @@ class Dealer extends Player{
     function dealCards(){
         foreach ($this->players as &$player){
             $this->deckOfCards->dealCards($player, 2);
-            $player->calcTotal();
+            $player->updateTotal();
         }
        $this->deckOfCards->dealCards($this, 2);
         
@@ -72,7 +72,7 @@ class Dealer extends Player{
                 $playerAction = $player->action();
                 if ($playerAction == "hit") {
                     $this->deckOfCards->dealCards($player, 1);
-                    $player->calcTotal();
+                    $player->updateTotal();
                     $lastCard = end(array_values($player->hand))->getDetails();
                     echo "<br> Player " . $player->name . " Hit - " . $lastCard ;
                 } 
@@ -82,7 +82,7 @@ class Dealer extends Player{
                 }
                 elseif ($playerAction == "doubleDown"){
                     $this->deckOfCards->dealCards($player, 1);
-                    $player->calcTotal();
+                    $player->updateTotal();
                     $lastCard = end(array_values($player->hand))->getDetails();
                     echo "<br> Player " . $player->name . " Doubled Down - " . $lastCard ;
                     $playing = false;

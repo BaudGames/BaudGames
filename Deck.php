@@ -22,7 +22,7 @@ class Deck {
     function __construct($numberOfDecks = 1){
         $suits = array("H","D","S","C");
         $faceValues = array("2","3","4","5","6","7","8","9","10","J","Q","K","A");
-        $numValues = array(2,3,4,5,6,7,8,9,10,10,10,10,11);
+        $numValues = array(2,3,4,5,6,7,8,9,10,10,10,10,1);
         $this->cards = array();
         $decknumber = 1; // counter for number of deck created
         
