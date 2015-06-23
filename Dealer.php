@@ -90,7 +90,7 @@ class Dealer extends Player{
                 }
                 if ( $player->total > $this->TARGETSCORE) {
                     $playing = false;
-                    echo "<br> Player" . $player->name . " BUST";
+                    echo "<br> Player " . $player->name . " BUST";
                 }
             }
            

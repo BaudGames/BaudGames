@@ -79,6 +79,7 @@ class Card {
        if (!is_null($this->aceLow) ){ //if it is null the card is not an ace as aces are constructed with the field to FALSE
            if (is_null($lowBool)){ // If no parameter is passed the toggle the value
                $this->aceLow = !$this->aceLow;
+              // echo ' value changed ' . $this->aceLow;
            }
            else { $this->aceLow = $lowBool;} //Use the passed value
             }
