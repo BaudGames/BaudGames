@@ -37,7 +37,7 @@ and open the template in the editor.
         
         <section class="options">
             <p>Login to BaudGames server</p>
-            <form action="http://localhost/BaudGames/user_login.php" method="post">
+            <form action="http://localhost/BaudGames/user.php" method="post">
                 <p> Email: <input type="text" name="email"/></p>
                 <p> Password: <input type="text" name="password"/></p> 
                 <p><input type="submit" name="login" value="Log In"/></p>
@@ -46,7 +46,7 @@ and open the template in the editor.
         
         <section class="options">
             <p>Create New Account</p>
-            <form action="http://localhost/BaudGames/create_user.php" method="post">
+            <form action="http://localhost/BaudGames/user.php" method="post">
                 <p> Name: <input type="text" name="name"/></p>
                 <p> Email: <input type="text" name="email"/></p>
                 <p> Password: <input type="text" name="password"/></p> 

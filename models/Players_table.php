@@ -6,7 +6,9 @@
  * and open the template in the editor.
  */
 
-class Players_table{
+require_once __DIR__ . '/TableAbstract.php';
+
+class Players_table extends TableAbstract{
 
     //
     // DEFAULT CONSTRUCTOR
@@ -15,13 +17,26 @@ class Players_table{
     /**
      * Takes the account details from client app when user logs in for first 
      * time and enters new player to the Players table in the DB..
-     * @param type $conn The active connection to the database.
      * @param type $name The user's name.
      * @param type $email The user's email address.
      * @param type $password The user's encrypted password (using std PHP crypt()).
      */
-    public function createUser($conn, $name, $email, $password){
-
+    public function createUser($name, $email, $password){
+        
+        
+        $sql = "INSERT INTO players(Name, Email, Password) VALUES (:name, :email, :password)";
+        $params = array(
+            ':name' => $name,
+            ':email' => $email,
+            ':password' => $password
+        );
+        $result = $this->dbh->prepare($sql);
+	$result->execute($params);
+        
+        if ($result->errorCode()==0) {return TRUE; }
+        return FALSE;
+        
+/*        
         $search_SQL = mysqli_query($conn, "SELECT * FROM 'players' WHERE email = $email");
          if ($search_SQL->num_rows < 1){ // If not create new user.
              $insert_SQL = "INSERT INTO 'players' VALUES ($name, $email, $password)";                    
@@ -34,17 +49,30 @@ class Players_table{
                  return 0;
              }
         }  
+ */
     }
 
     /**
      * Query the DB for user details and if correct then log user in.
-     * @param type $conn The active DB connection to use.
-     * @param type $email The emailaddress to search for.
+     * @param type $email The email address to search for.
      * @param type $password The password to search for, encrypted using std PHP crypt().
      * @return int Returns 1 is successful, 0 if failed.
      */
-    public function logIn($conn, $email, $password){
+    public function logIn($email, $password){
         // Check if user account exists based on email.
+        
+        
+        $sql = "SELECT * FROM players WHERE Email = :email AND Password = :password";
+        $params = array(
+		':email' => $email,
+                ':password' => $password
+        );
+	$result = $this->dbh->prepare($sql);
+	$result->execute($params);
+        if ($result->rowCount()>0) { return TRUE; }
+        return FALSE;
+
+        /*
         $sql = "SELECT * FROM 'players' WHERE email = $email";
         $conn->beginTransaction();
         $search_email_SQL = $conn->prepare($sql);
@@ -66,12 +94,14 @@ class Players_table{
                         // ARE YOUSERS EVEN LOGGING IN, OR JUST JOINING SESSION?
                         // ASSUME APP AUTO LOGS IN, BUT DOES THE SERVER CARE? 
                         // DO LOCAL?
-                        return 1;            }
+                        return 1;            
+                        
+                    }
                 }
             
                 }
             $conn->commit();
         } else { echo "search_email_SQL query failed to return PDO object.<br>";
-        }
+        }*/
     }    
 }
