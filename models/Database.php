@@ -6,14 +6,14 @@ class Database {
 	protected $dbh;
 
 	public static function getInstance() {
-		$username = 'tim'; // connection info for helios.csesalford.com
-		$password = 'tim'; // change this to the password provided
+		$username = 'create_players'; // connection info for helios.csesalford.com
+		$password = 'cp'; // change this to the password provided
                 
                 // ENCRYPTION OF PASSWORD?
                 
-                ////$host = 'baudgames.ddns.net';
-		//$host = "213.229.84.20";
-		$host = 'localhost';
+                
+                $host = "baudgames.ddns.net"; // Do we want remote connection?
+		//$host = 'localhost';
 		$dbname = 'baud_games';
 
 		if (self::$instance === null) { //checks if the object exists
@@ -41,5 +41,4 @@ class Database {
 	public function __destruct() {
 		$this->dbh = null; // destroys the database handler when no longer needed
 	}
-
 }
