@@ -29,7 +29,7 @@ and open the template in the editor.
 
         <section class="options">
             <p>Want to play Blackjack?</p>
-            <form action="http://localhost/BaudGames/games/Blackjack/index.php"
+            <form action="games/Blackjack/index.php"
                 method="post"
                 <p><input type="submit" name="play" value="PLAY!"/></p>           
             </form>
@@ -37,7 +37,7 @@ and open the template in the editor.
         
         <section class="options">
             <p>Login to BaudGames server</p>
-            <form action="http://localhost/BaudGames/user.php" method="post">
+            <form action="user.php" method="post">
                 <p> Email: <input type="text" name="email"/></p>
                 <p> Password: <input type="text" name="password"/></p> 
                 <p><input type="submit" name="login" value="Log In"/></p>
@@ -46,7 +46,7 @@ and open the template in the editor.
         
         <section class="options">
             <p>Create New Account</p>
-            <form action="http://localhost/BaudGames/user.php" method="post">
+            <form action="user.php" method="post">
                 <p> Name: <input type="text" name="name"/></p>
                 <p> Email: <input type="text" name="email"/></p>
                 <p> Password: <input type="text" name="password"/></p> 
