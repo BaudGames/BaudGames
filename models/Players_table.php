@@ -33,7 +33,9 @@ class Players_table extends TableAbstract{
         $result = $this->dbh->prepare($sql);
 	$result->execute($params);
         
-        if ($result->errorCode()==0) {return TRUE; }
+        if ($result->errorCode()==0) {
+            return TRUE;             
+        }
         return FALSE;
         
 /*        
