@@ -15,7 +15,7 @@ class App{
     
     public function parseUrl() {
         
-        if(isset($_GET('url'))) {
+        if(null !== $_GET('url')) {
             echo $_GET('url');
         }
     }
