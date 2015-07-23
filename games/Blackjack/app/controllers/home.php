@@ -10,5 +10,3 @@ class Home extends Controller {
         echo 'Test';
     }
 }
-
-?>

@@ -21,5 +21,3 @@ $de->tableAction();
 
 $de->printPlayerDetails();
 $de->declareWinners();*/
-
-?>

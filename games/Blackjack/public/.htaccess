@@ -1,5 +1,6 @@
-Options -Multiviews
-
+Options -MultiViews
+RewriteEngine On
+# Base directory for the app, ignoring it for url splitting
 RewriteBase /BaudGames/games/Blackjack/public
 
 RewriteCond %{REQUEST_FILENAME) !-d

@@ -88,4 +88,3 @@ class Card {
            else { $this->numericValue = 11;}
        }
    }
-

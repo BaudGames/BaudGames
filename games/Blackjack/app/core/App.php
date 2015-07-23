@@ -10,16 +10,15 @@ class App{
     
     public function __construct() {
         
-        $this->parseUrl();
+        echo '<pre>', var_dump($this->parseUrl()), '</pre>';
     }
     
-    public function parseUrl() {
+    protected function parseUrl() {
         
-        if(null !== $_GET('url')) {
-            echo $_GET('url');
+        if(isset($_GET['url'])) {
+            // Trims, filters and splits the (remaining) url then returns it as an array
+            return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
         }
     }
     
 }
-
-?>
