@@ -1,12 +1,9 @@
 <?php
-
+//Default controller
 class Home extends Controller {
     
-    public function index() {
-        echo 'home/index';
-    }
-    
-    public function test() {
-        echo 'Test';
+    // Default method
+    public function index($name = '', $other_name = '') {
+        echo $name, ' ', $other_name;
     }
 }

@@ -29,7 +29,7 @@ and open the template in the editor.
 
         <section class="options">
             <p>Want to play Blackjack?</p>
-            <form action="games/Blackjack/index.php"
+            <form action="games/Blackjack/public"
                 method="post"
                 <p><input type="submit" name="play" value="PLAY!"/></p>           
             </form>
