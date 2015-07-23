@@ -1,6 +1,6 @@
 Options -Multiviews
 
-Rewritebase /BaudGames/games/Blackjack/public
+RewriteBase /BaudGames/games/Blackjack/public
 
 RewriteCond %{REQUEST_FILENAME) !-d
 RewriteCond %{REQUEST_FILENAME) !-f
