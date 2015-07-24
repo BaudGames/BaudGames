@@ -1,4 +1,9 @@
 <?php
+
+/*
+ * 
+ */
+
 /**
  * Card used in Deck class
  *
@@ -23,42 +28,38 @@ class Card {
         $this->faceValue = $faceValue;
         $this->numericValue = $numericValue;
         $this->faceUp = $faceUp;
-        ($this->numericValue == 1) ? $this->aceLow=true : $this->aceLow = null;
-        //null if card is not an ace
+        $this->aceLow = null; //null if card is not an ace
+       
         //If the card is an ace set the $aceLow variable to true.
         //This is because only the first ace in any hand could be couted as 11.
+        if ($this->numericValue == 1) {$this->aceLow=true;}
    }
    
    //
    //  ACCESSORS
    //
    
-   function getSuite() {
+   function getSuite(){
        return $this->suite;
    }
-   
-   function getFaceValue() {
+   function getFaceValue(){
        return $this->faceValue;
    }
-   
-   function getNumericValue() {
+   function getNumericValue(){
        return $this->numericValue;
    }
-   
-   function getFaceUp() {
+   function getFaceUp(){
        return$this->faceUp;
    }
-   
-   function getAceLow() {
+   function getAceLow(){
        return $this->aceLow;
    }
-   
    /**Get the details used to commenly display the card
     * eg 10H or AD
     * 
     * @return String
     */
-   function getDetails() {
+   function getDetails(){
         return  $this->faceValue . $this->suite;
    }
    
@@ -83,6 +84,7 @@ class Card {
            else { $this->aceLow = $lowBool;} //Use the passed value
             }
             //set the numerc value of ace
-           ($this->aceLow == true) ? $this->numericValue = 1 : $this->numericValue = 11;
+           if ($this->aceLow == true) { $this->numericValue = 1;}
+           else { $this->numericValue = 11;}
        }
    }
