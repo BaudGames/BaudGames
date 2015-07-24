@@ -13,78 +13,70 @@
  * @author Chris Dromey <chrisdromey@gmail.com>
  */
 class Deck {
+
     private $cards;
-    
+
     /**
      * Generates a deck of cards.
      * 
      * @param int $numberOfDecks (DEFAULT = 1) The number os standard 52 card deck to be used in this deck
      */
-    function __construct($numberOfDecks = 1){
-        $suits = array("H","D","S","C");
-        $faceValues = array("2","3","4","5","6","7","8","9","10","J","Q","K","A");
-        $numValues = array(2,3,4,5,6,7,8,9,10,10,10,10,1);
-        $this->cards = array();
-        $decknumber = 1; // counter for number of deck created
-        
-        // loop to create the amount of decks needed
-        while($decknumber <= $numberOfDecks){
-            // loop to cycle through each suite
-            foreach ($suits as &$suit){
-                $valCount = 0;// couter to ensure correct numerical value is assigned from the array
-                // loop to cycle throguh each card in the suit
-                foreach ($faceValues as &$value){
-                    $tempCard = new Card($suit, $value, $numValues[$valCount]);
-                    array_push($this->cards, $tempCard);
-                    $valCount++;
+    public function __construct($numberOfDecks = 1) {
+        $suits = array("H", "D", "S", "C");
+        $values = ["2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "7" => 7,
+            "8" => 8, "9" => 9, "10" => 10, "J" => 10, "Q" => 10, "K" => 10,
+            "A" => 1];
+        $this->cards = [];
+
+        // Loop to create the amount of decks needed
+        for($decknumber = 0; $decknumber < $numberOfDecks; $decknumber++) {
+            // Loop to cycle through each suite
+            foreach ($suits as $suit) {
+                // Loop to cycle throguh each card in the suit
+                foreach ($values as $face => $num) {
+                    array_push($this->cards, new Card($suit, $face, $num));
                 }
             }
-            $decknumber++;
         }
     }
-    
-    
-    
+
     /////////////////
     //  ACCESSORS  //
     /////////////////
-    
-    function getCards(){
+
+    public function getCards() {
         return $this->cards;
     }
-    
+
     /**
      * Prints the details of all the cards in Deck
      */
-    function printDetails(){
-        foreach($this->cards as &$card)  {
+    public function printDetails() {
+        foreach ($this->cards as $card) {
             echo $card->getDetails();
         }
     }
-    
+
     /////////////////
     //   MUTATORS  //
     /////////////////
-    
+
     /**
-     * Shuffels the array of cards to a random order
+     * Shuffles the array of cards to a random order
      */
-    function shuffle(){
-         shuffle($this->cards);
+    public function shuffle() {
+        shuffle($this->cards);
     }
+
     /**
      * Deals $numCards cards to $player Player
      * 
      * @param Player $player The player the cards are being delt to
      * @param int $numCards The number of cards to be delt
      */
-    function dealCards($player, $numCards){
-        $i=1;
-        while($i <= $numCards){
+    public function dealCards($player, $numCards) {
+        for ($i = 1; $i <= $numCards; $i++) {
             $player->addCardToHand(array_pop($this->cards));
-            $i++;
         }
-        
     }
- 
 }

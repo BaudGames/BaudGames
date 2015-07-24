@@ -17,74 +17,86 @@
  * 
  */
 class Card {
+
     private $suite;
     private $faceValue;
     private $numericValue;
     private $faceUp;
     private $aceLow;
-    
-    function __construct($suite , $faceValue, $numericValue, $faceUp = false, $aceLow = null) {
+
+    public function __construct($suite, $faceValue, $numericValue, $faceUp = false, $aceLow = null) {
         $this->suite = $suite;
         $this->faceValue = $faceValue;
         $this->numericValue = $numericValue;
         $this->faceUp = $faceUp;
-        $this->aceLow = null; //null if card is not an ace
-       
         //If the card is an ace set the $aceLow variable to true.
         //This is because only the first ace in any hand could be couted as 11.
-        if ($this->numericValue == 1) {$this->aceLow=true;}
-   }
+        if($this->numericValue === 1) {
+            $this->aceLow = true;
+        }
+    }
+
+    /////////////////
+    //  ACCESSORS  //
+    /////////////////
    
-   //
-   //  ACCESSORS
-   //
-   
-   function getSuite(){
-       return $this->suite;
-   }
-   function getFaceValue(){
-       return $this->faceValue;
-   }
-   function getNumericValue(){
-       return $this->numericValue;
-   }
-   function getFaceUp(){
-       return$this->faceUp;
-   }
-   function getAceLow(){
-       return $this->aceLow;
-   }
-   /**Get the details used to commenly display the card
-    * eg 10H or AD
-    * 
-    * @return String
-    */
-   function getDetails(){
-        return  $this->faceValue . $this->suite;
-   }
-   
-   ////////////////
-   //  MUTATORS  //
-   ////////////////
-   
-   /** Allows you to change the value of an ace from high to low.
-    * 
-    * Does nothing if the $aceLow field is set to null (i.e ths card is not an ace).
-    * If a perameter is passed the value of the boolean field $aceLow willl be set to that.
-    * Otherwise the field will be toggled.
-    * 
-    * @param bool $lowBool (default null) the value to set the $aceLow field to
-    */
-   function setAceValue($lowBool = null){
-       if (!is_null($this->aceLow) ){ //if it is null the card is not an ace as aces are constructed with the field to FALSE
-           if (is_null($lowBool)){ // If no parameter is passed the toggle the value
-               $this->aceLow = !$this->aceLow;
-              // echo ' value changed ' . $this->aceLow;
-           }
-           else { $this->aceLow = $lowBool;} //Use the passed value
+    public function getSuite() {
+        return $this->suite;
+    }
+
+    public function getFaceValue() {
+        return $this->faceValue;
+    }
+
+    public function getNumericValue() {
+        return $this->numericValue;
+    }
+
+    public function getFaceUp() {
+        return$this->faceUp;
+    }
+
+    public function getAceLow() {
+        return $this->aceLow;
+    }
+
+    /** Get the details used to commenly display the card
+     *  e.g. 10H or AD
+     * 
+     * @return String
+     */
+
+    public function getDetails() {
+        return $this->faceValue . $this->suite;
+    }
+
+    ////////////////
+    //  MUTATORS  //
+    ////////////////
+
+    /** Allows you to change the value of an ace from high to low.
+     * 
+     * Does nothing if the $aceLow field is set to null (i.e ths card is not an ace).
+     * If a perameter is passed the value of the boolean field $aceLow willl be set to that.
+     * Otherwise the field will be toggled.
+     * 
+     * @param bool $lowBool (default null) the value to set the $aceLow field to
+     */
+    public function setAceValue($lowBool = null) {
+        // If it is null the card is not an ace as aces are constructed with the field to FALSE
+        if (!is_null($this->aceLow)) {
+            // If no parameter is passed the toggle the value
+            if (is_null($lowBool)) { 
+                $this->aceLow = !$this->aceLow;
+                // echo ' value changed ', $this->aceLow;
             }
-            //set the numerc value of ace
-           if ($this->aceLow == true) { $this->numericValue = 1;}
-           else { $this->numericValue = 11;}
-       }
-   }
+            // Use the passed value
+            else {
+                $this->aceLow = $lowBool;
+            } 
+        }
+        //set the numerc value of ace
+        ($this->aceLow === true) ? $this->numericValue = 1 : $this->numericValue = 11;
+    }
+
+}
