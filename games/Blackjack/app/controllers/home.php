@@ -1,23 +1,24 @@
 <?php
-//Default controller
+
+/**
+ * Default home controller, used when no controller or method has been passed to
+ * app.
+ */
 class Home extends Controller {
     
-    // Default method
-    public function index() {
-        require_once '../app/models/Deck.php';
-        require_once'../app/models/Card.php';
-        require_once '../app/models/Dealer.php';
-        require_once '../app/models/Player.php';
-
-        $de = new Dealer(7);
-        $de->dealCards();
-        echo "<br> > starting hand";
-        $de->printPlayerDetails();
-        //$de->printDealerHand();
-        echo "<br> > end of starting hand <br>";// --------------";
-        $de->tableAction();
-
-        $de->printPlayerDetails();
-        $de->declareWinners();
+    /**
+     * Default controller method - used when no method passed to app.
+     * 
+     * @param type $name
+     * @param type $mood
+     */
+    public function index($name = 'alex', $mood = 'happy') {
+        $user = $this->model('User');
+        $user->name = $name;
+        
+        $this->view('home/index', [
+            'name' => $user->name,
+            'mood' => $mood
+        ]);
     }
 }

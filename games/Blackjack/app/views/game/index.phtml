@@ -1,0 +1,27 @@
+<?php require_once '../app/views/template/header.phtml'; ?>
+<main class="container">
+    <header class="well well-lg">
+        <h1>Welcome to Blackjack!</h1>    
+    </header>
+    <p>To start Blackjack, please enter number of players and number of decks:</p>
+    <form action="blackjack.php" method="get">
+        <div class="well well-sm">
+            <label>Select Players:</label>
+            <div>4<input type="radio" name="players" value="4" checked="checked" /></div>
+            <div>3<input type="radio" name="players" value="3"/></div>
+            <div>2<input type="radio" name="players" value="2"/></div>
+            <div>1<input type="radio" name="players" value="1"/></div>
+        </div>
+        <div class="well well-sm">
+            <label>Select Decks:</label>
+            <div>4<input type="radio" name="decks" value="4" checked="checked" /></div>
+            <div>3<input type="radio" name="decks" value="3"/></div>
+            <div>2<input type="radio" name="decks" value="2"/></div>
+            <div>1<input type="radio" name="decks" value="1"/></div>
+        </div>
+        <div>
+            <input type="submit" value="Submit" name="submit" />
+        </div>
+    </form>
+</main>
+<?php require_once '../app/views/template/footer.phtml'; ?>
