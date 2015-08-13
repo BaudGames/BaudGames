@@ -19,6 +19,7 @@ if (!isset($_SESSION['view'])){
     $view = unserialize($_SESSION['view']);
 }
 if (isset($_POST['play'])){
+    $view->stick = false;
     $game = new Game();
     $view->playerCards = $game->getPlayerCards();
     $view->dealerCards = $game->getDealerCards();
@@ -29,12 +30,12 @@ if (isset($_POST['hit'])){
     // Calls function amd checks if score 21 or higher.
     if ($game->playerHit()){
         $view->dealerScore = $game->dealerHit();
-        $_SESSION['stick'] = true;        
+        $view->stick = true;
     }
 }
 if (isset($_POST['stick'])){
     $view->dealerScore = $game->dealerHit();
-    $_SESSION['stick'] = true;  
+    $view->stick = true;  
 }
 $view->playerCards = $game->getPlayerCards();
 $view->dealerCards = $game->getDealerCards();

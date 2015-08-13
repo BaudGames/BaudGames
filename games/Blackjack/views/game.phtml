@@ -6,7 +6,7 @@
 <?php
     require_once './views/display.phtml';
     
-    if (!isset($_SESSION['stick'])){
+    if (!$view->stick){
        require_once './views/action.phtml';            
     }
     else{
