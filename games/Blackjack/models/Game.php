@@ -13,7 +13,7 @@
  */
 include_once('Player.php');
 
-class Dealer extends Player {
+class Game extends Player {
 
     private $deckOfCards;
     private $playerCards;
