@@ -16,25 +16,55 @@ include_once('Player.php');
 class Dealer extends Player {
 
     private $deckOfCards;
-    private $TARGETSCORE = 21;
-    private $players;
+    private $playerCards;
+    private $dealerCards;
 
-    public function __construct($numPlayers=1) {
-        $this->deckOfCards = new Deck(2);
-        $this->players = array();
-        $this->hand = array();
-        $this->name = 'Dealer';
+    public function __construct() {
+        $this->deckOfCards = new Deck(1);
         $this->deckOfCards->shuffle();
-
-
-        for ($p = 1; $p <= $numPlayers; $p++) {
-            $player = new Player($p);
-            array_push($this->players, $player);
-        }
-        
-        array_push($this->players, $this);
+        $this->playerCards = array(
+           $this->deckOfCards->newCard(),
+           $this->deckOfCards->newCard()
+        );
+        $this->dealerCards = array(
+           $this->deckOfCards->newCard(),
+           $this->deckOfCards->newCard()
+        );
     }
 
+    /**
+     * Returns the array of dealers cards.
+     * @return type array<card> The dealers hand of cards.
+     */   
+    public function getDealerCards(){
+        return $this->dealerCards;
+    } 
+    
+    /**
+     * Returns the array of players cards.
+     * @return type array<card> The players hand of cards.
+     */
+    public function getPlayerCards(){
+        return $this->playerCards;
+    }
+    
+
+   
+   /**
+    * Calculate score of any given hand of cards (player or dealers).
+    * @param type $hand The hand of cards to count.
+    * @return type
+    */
+   public function getScore($hand){
+       $score = 0;
+       foreach ($hand as $card){
+           $score = $score + $card->getNumericValue();           
+       }
+       return $score;
+   }
+
+   
+        
    public function printPlayerDetails() {
         foreach ($this->players as &$player) {
             $player->printDetails();
@@ -93,6 +123,38 @@ class Dealer extends Player {
         }
     }
 
+    /**
+     * Prompts the dealer to draw cards until their total score is at least 16,
+     * which may exceed 21 - in which case the dealer is bust.
+     * @return $score The Dealer's final score.
+     */
+    public function dealerHit(){
+        $score = $this->getScore($this->dealerCards);
+        while ($score < 17){
+            $card = $this->deckOfCards->newCard();
+            array_push($this->dealerCards, $card);
+            // Tot up and return score.
+            $score = $this->getScore($this->dealerCards);
+        }                    
+        return $score;
+    }
+    
+    /**
+     * Player action for 'Hit', adds a nes card to players hand.
+     * @return type bool If players score above 21 return true.
+     */
+    public function playerHit(){
+        // Take a new card from deck.
+        $card = $this->deckOfCards->newCard();
+        array_push($this->playerCards, $card);
+        // Tot up and return score.
+        $score = $this->getScore($this->playerCards);
+        $bust = $score > 21;
+        return $bust;
+                
+    }
+    
+    
    public function declareWinners() {
         echo '<br><br>------- GAME OUTCOME ------';
         echo '<br> Dealer has ', $this->total;

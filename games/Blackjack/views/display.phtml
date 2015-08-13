@@ -1,0 +1,19 @@
+<html>
+    
+    <?php $num = 1;
+    foreach ($view->playerCards as $card){
+        $val = $card->getDetails();
+        echo "Your Card # $num is $val<br>";
+        $num++;
+    }?>
+    <h3>Your score is <?php echo $view->playerScore; ?></h3>
+
+    <?php $num = 1;
+    foreach ($view->dealerCards as $card){
+        $val = $card->getDetails();        
+        echo "Dealer's Card # $num is $val<br>";
+        $num++;
+    }?>
+    <h3>Dealer's score is <?php echo $view->dealerScore; ?></h3>
+    
+</html>

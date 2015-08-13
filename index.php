@@ -29,8 +29,9 @@ and open the template in the editor.
 
         <section class="options">
             <p>Want to play Blackjack?</p>
-            <form action="games/Blackjack/public"
+            <form action="games/Blackjack/game.php"
                 method="post"
+                <p> Email: <input type="text" name="email"/></p>
                 <p><input type="submit" name="play" value="PLAY!"/></p>           
             </form>
         </section>

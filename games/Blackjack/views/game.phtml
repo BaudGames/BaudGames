@@ -1,0 +1,16 @@
+<?php require('header.phtml'); ?>
+
+ <main>
+     <h1>Blackjack Game</h1>
+ </main>
+<?php
+    require_once './views/display.phtml';
+    
+    if (!isset($_SESSION['stick'])){
+       require_once './views/action.phtml';            
+    }
+    else{
+        require_once './views/result.phtml';
+    }
+    require('footer.phtml');
+?>

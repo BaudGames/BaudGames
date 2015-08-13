@@ -44,6 +44,7 @@ class Deck {
     //  ACCESSORS  //
     /////////////////
 
+    
     public function getCards() {
         return $this->cards;
     }
@@ -79,4 +80,14 @@ class Deck {
             $player->addCardToHand(array_pop($this->cards));
         }
     }
+    
+    /**
+     * Removes one card from the deck and returns the card to the call.
+     * @return Card The fresh card from the deck.
+     */
+    public function newCard(){
+        $card = array_pop($this->cards);
+        return $card;
+    }
+    
 }
