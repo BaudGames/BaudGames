@@ -1,0 +1,26 @@
+<html>
+    <main>    
+        <h2>Game Over!</h2>
+
+        <?php
+        if ($view->playerScore < 22){
+            if($view->playerScore > $view->dealerScore
+                    || $view->dealerScore > 21){
+               echo "You Win!";}
+            elseif ($view->playerScore === $view->dealerScore){
+                echo "It's a Draw!";}
+            elseif ($view->dealerScore > $view->playerScore
+                    && $view->dealerScore < 22){
+                echo "Dealer wins!";}                   
+        } else{
+            if ($view->dealerScore < 22){
+                echo "Dealer wins!";}
+            else {echo "It's a Draw!";}
+        }
+        $_SESSION['stick'] = null;
+        ?>        
+        <form action="game.php" method="post">
+            <p><input type="submit" name="play" value="New Game?"/></p>
+        </form>
+    </main>    
+</html>
