@@ -1,17 +1,10 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Dealer
+ * Description of Game class
  *
  * @author Chris
  */
-include_once('Player.php');
+include_once('autoload.php');
 
 class Game extends Player {
 

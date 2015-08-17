@@ -6,7 +6,10 @@
         echo "Your Card # $num is $val<br>";
         $num++;
     }?>
-    <h3>Your score is <?php echo $view->playerScore; ?></h3>
+    <h3>Your score is 
+        <?php echo $view->playerScore; 
+        if ($view->playerScore > 21){echo " - Bust!";}?>
+    </h3>
 
     <?php $num = 1;
     foreach ($view->dealerCards as $card){
@@ -14,6 +17,9 @@
         echo "Dealer's Card # $num is $val<br>";
         $num++;
     }?>
-    <h3>Dealer's score is <?php echo $view->dealerScore; ?></h3>
+    <h3>Dealer's score is 
+        <?php echo $view->dealerScore; 
+        if ($view->dealerScore > 21){echo " - Bust!";}?>
+    </h3>
     
 </html>

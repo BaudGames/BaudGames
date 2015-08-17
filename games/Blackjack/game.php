@@ -21,9 +21,7 @@ if (!isset($_SESSION['view'])){
 if (isset($_POST['play'])){
     $view->stick = false;
     $game = new Game();
-    $view->playerCards = $game->getPlayerCards();
-    $view->dealerCards = $game->getDealerCards();
-    $view->playerScore = $game->getScore($view->playerCards);
+    $view->dealerCards = $game->getDealerCards();    
     $view->dealerScore = $game->getScore($view->dealerCards);    
 }
 if (isset($_POST['hit'])){
